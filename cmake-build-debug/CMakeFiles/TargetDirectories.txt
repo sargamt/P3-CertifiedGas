@@ -1,3 +1,3 @@
-C:/Users/gabri/CLionProjects/DSA_GAS/cmake-build-debug/CMakeFiles/DSA_GAS.dir
-C:/Users/gabri/CLionProjects/DSA_GAS/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/gabri/CLionProjects/DSA_GAS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/alema/CLionProjects/P3-CertifiedGas/cmake-build-debug/CMakeFiles/DSA_GAS.dir
+C:/Users/alema/CLionProjects/P3-CertifiedGas/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/alema/CLionProjects/P3-CertifiedGas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
