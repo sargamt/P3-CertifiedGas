@@ -10,6 +10,10 @@ using namespace std;
 
 int main() {
 
+
+
+    string sourceGenre;
+
     unordered_set<string> set1{"acoustic", "guitar", "piano"};
     unordered_set<string> set2{"afrobeat", "reggae", "ska", "dub"};
     unordered_set<string> set3{"brazil", "reggaeton", "pagode", "forro", "mpb"};
@@ -112,6 +116,7 @@ int main() {
             }
             if (songName == tokens[4]) {
                 cout << tokens[0] << endl;
+                sourceGenre = tokens[20];
                 songFound = true;
             }
         }
@@ -122,7 +127,70 @@ int main() {
         }
     }
 
-    cout << "Please choose the attribute for comparison\n"
+
+    unordered_set<string> foundSet;
+
+    for (unordered_set<string> eachSet : sets) {
+        for (string genreFromSet : eachSet) {
+            if (genreFromSet == sourceGenre) {
+                foundSet = eachSet;
+            }
+        }
+    }
+    for (string aGenre: foundSet) {
+        //parsing data
+        string filename = "../dataset.csv";
+        ifstream file(filename);
+
+        if (!file.is_open()) {
+            cerr << "Error opening file: " << filename << endl;
+        }
+
+        string space;
+
+        string line;
+        getline(file, line); // to ignore the first line with the column titles
+        int numSongs = 0;
+        while (numSongs < 997) {
+            getline(file, line);
+            stringstream ss(line);
+
+            vector<string> tokens;
+            string token;
+            bool inQuotes = false;
+            string field;
+
+            while (getline(ss, token, ',')) {
+                if (inQuotes == false) {
+                    if (token.front() == '"' && token.back() != '"') {
+                        inQuotes = true;
+                        field = token + ",";
+                    }
+                    else {
+                        tokens.push_back(token);
+                    }
+                }
+                else {
+                    field += token;
+                    if (token.back() == '"') {
+                        inQuotes = false;
+                        tokens.push_back(field);
+                    }
+                    else {
+                        field += ",";
+                    }
+                }
+            }
+            if (aGenre == tokens[20]) {
+                numSongs++;
+                // do what is necessary to apply whichever sort was asked for
+            }
+        }
+        file.close();
+    }
+
+
+    cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
             "   1. Popularity\n"
             "   2. Danceability\n"
             "   3. Energy\n"
