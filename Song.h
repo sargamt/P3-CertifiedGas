@@ -27,27 +27,6 @@ class song{
   float dance;
   float energy;
 
-    class song {
-    private:
-        string track_id;
-        string name;
-        string artist;
-        string album;
-        string genre;
-        bool expl;
-        int pop;
-        int key;
-        int duration;
-        int mode;
-        int time_sig;
-        float tempo;
-        float valence;
-        float liveness;
-        float instrumentalness;
-        float speechiness;
-        float dance;
-        float energy;
-
     public:
         // Constructor
         song(string track_id, string name, string artist, string album, string genre,
