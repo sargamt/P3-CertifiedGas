@@ -8,55 +8,34 @@
 
 using namespace std;
 class song{
-  string track_id;
-  string name;
-  string artist;
-  string album;
-  string genre;
-  bool expl;
-  int pop;
-  int key;
-  int duration;
-  int mode;
-  int time_sig;
-  float tempo;
-  float valence;
-  float liveness;
-  float instrumentalness;
-  float speechiness;
-  float dance;
-  float energy;
+    string id;
+    string track_id;
+    string artists;
+    string album_name;
+    string track_name;
+    int popularity;
+    float danceability;
+    float energy;
+    float loudness;
+    string genre;
 
     public:
         // Constructor
-        song(string track_id, string name, string artist, string album, string genre,
-             bool expl, int pop, int key, int duration, int mode, int time_sig,
-             float tempo, float valence, float liveness, float instrumentalness,
-             float speechiness, float dance, float energy)
-                : track_id(track_id), name(name), artist(artist), album(album), genre(genre),
-                  expl(expl), pop(pop), key(key), duration(duration), mode(mode),
-                  time_sig(time_sig), tempo(tempo), valence(valence), liveness(liveness),
-                  instrumentalness(instrumentalness), speechiness(speechiness), dance(dance),
-                  energy(energy) {}
+        song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
+             float engy, float loud, string gen): id(ID), track_id(trackID), artists(artistNames),
+             album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
+             loudness(loud), genre(gen) {}
 
         // Getters
+        string getID() const { return id; }
         string getTrackId() const { return track_id; }
-        string getName() const { return name; }
-        string getArtist() const { return artist; }
-        string getAlbum() const { return album; }
-        string getGenre() const { return genre; }
-        bool isExplicit() const { return expl; }
-        int getPopularity() const { return pop; }
-        int getKey() const { return key; }
-        int getDuration() const { return duration; }
-        int getMode() const { return mode; }
-        int getTimeSignature() const { return time_sig; }
-        float getTempo() const { return tempo; }
-        float getValence() const { return valence; }
-        float getLiveness() const { return liveness; }
-        float getInstrumentalness() const { return instrumentalness; }
-        float getSpeechiness() const { return speechiness; }
-        float getDanceability() const { return dance; }
+        string getArtists() const { return artists; }
+        string getAlbum() const { return album_name; }
+        string getTrackName() const { return track_name; }
+        int getPopularity() const { return popularity; }
+        float getDanceability() const { return danceability; }
         float getEnergy() const { return energy; }
+        float getLoudness() const { return loudness; }
+        string getGenre() const { return genre; }
     };
 #endif //DSAFINALPROJECT_SONG_H
