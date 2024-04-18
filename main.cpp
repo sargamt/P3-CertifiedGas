@@ -20,8 +20,8 @@ int main() {
             "   2. Danceability\n"
             "   3. Energy\n"
             "   4. Loudness\n"
-            "   5. speachiness\n"
-            "   6. acousticness\n"
+            "   5. Speechiness\n"
+            "   6. Acousticness\n"
             "   7. Liveness\n"
             "   8. Valence\n"
             "   9. Tempo\n-";
