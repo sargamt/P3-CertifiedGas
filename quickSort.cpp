@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int partition(vector<int>& arr, int low, int high){
+inline int partition(vector<int>& arr, int low, int high){
     int pivot = arr[high]; // Chooses the last element of the given array as the pivot
     int small = low - 1; // Index of the smaller element beginning before the array to ensure the first element is smaller than the pivot
 
@@ -17,7 +17,7 @@ int partition(vector<int>& arr, int low, int high){
     return small + 1;
 }
 
-void quickSort(vector<int>& arr, int low, int high){
+inline void quickSort(vector<int>& arr, int low, int high){
     if(low < high){
         // Finds the partition index
         int splitIndex = partition(arr, low,high);
