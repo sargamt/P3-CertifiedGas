@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-
 #include <fstream>
-
 
 #include "quickSort.cpp"
 
@@ -19,7 +17,7 @@ int main() {
 
     // Taking user input
     cout << "Please enter a song name\n-";
-    cin >> songName;
+    getline(cin, songName);
 
     while(!songFound){
         //parsing data
@@ -72,7 +70,7 @@ int main() {
         file.close();
         if(!songFound){
             cout << "This song was not found. Please enter another song name.\n-";
-            cin >> songName;
+            getline(cin, songName);
         }
     }
 
