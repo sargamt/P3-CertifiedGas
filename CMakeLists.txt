@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(DSA_GAS main.cpp
         quickSort.cpp
-        song.h )
+        song.h
+        Heap_structure.cpp)
