@@ -37,5 +37,31 @@ class song{
         float getEnergy() const { return energy; }
         float getLoudness() const { return loudness; }
         string getGenre() const { return genre; }
+        template<typename T>
+        T select_attribute(int i){
+            switch(i){
+                case 1:
+                    return getID();
+                case 2:
+                    return getTrackId();
+                case 3:
+                    return getArtists();
+                case 4:
+                    return getAlbum();
+                case 5:
+                    return getTrackName();
+                case 6:
+                    return getPopularity();
+                case 7:
+                    return getDanceability();
+                case 8:
+                    return getEnergy();
+                case 9:
+                    return getLoudness();
+                case 10:
+                    return getGenre();
+            }
+        }
+
     };
 #endif //DSAFINALPROJECT_SONG_H
