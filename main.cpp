@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <unordered_set>
+#include <chrono>
 
 #include "quickSort.cpp"
 #include "Song.h"
@@ -157,6 +158,9 @@ int main() {
             }
         }
     }
+
+    auto start = chrono::high_resolution_clock::now();
+
     for (string aGenre: foundSet) {
         //parsing data
         string filename = "../dataset.csv";
@@ -227,19 +231,26 @@ int main() {
     }
 
     if(isHeapSort){
+        //Do anything else you need for heap sort
+        auto stopHeap = chrono::high_resolution_clock::now();
+        auto heapDuration = chrono::duration_cast<chrono::microseconds>(stopHeap - start); // Time Heap Sort took
         //print heap sort stuff
         // Make sure to use playlistSize
+
+        cout << "\nTotal time for Heap Sort = " << heapDuration.count() << " microseconds.";
     }else{
         int counter = 1; // used for UI element
         // call quicksort
         quickSort(recList, 0, recList.size()-1);
-
+        auto stopQuick = chrono::high_resolution_clock::now();
+        auto quickDuration = chrono::duration_cast<chrono::microseconds>(stopQuick - start); // Time Heap Sort took
         // print
         for(int i = 0; i < playlistSize; i++){
             cout << counter << ".------------------------------------------------------------------------------------\n"
                                "\t~Song Name: " << recList[i].getTrackName() << "\n\t~Artist: " << recList[i].getArtists() << "\n\t~Album: " << recList[i].getAlbum() << "\n\t~Genre: " << recList[i].getGenre() << "\n\t~Comparison Value: " << recList[i].getComparison() << "\n";
             counter++;
         }
+        cout << "\nTotal time for Quick Sort = " << quickDuration.count() << " microseconds.";
     }
 
     return 0;
