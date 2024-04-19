@@ -39,5 +39,16 @@ class song{
         float getEnergy() const { return energy; }
         float getLoudness() const { return loudness; }
         string getGenre() const { return genre; }
+        float gerneralGet(int attribute){
+            if(attribute == 1){
+                return float(getPopularity());
+            }else if(attribute == 2){
+                return getDanceability();
+            }else if(attribute == 3){
+                return getEnergy();
+            }else if(attribute == 4){
+                return getLoudness();
+            }
+        }
     };
 #endif //DSAFINALPROJECT_SONG_H
