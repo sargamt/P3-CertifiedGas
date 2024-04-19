@@ -65,7 +65,7 @@ int main() {
     int playlistSize;
     int attribute; // Holds the comparison attribute
     bool songFound = false; // exits loop when the song is found
-    bool heapOrQuick; // Will contain true for Heap and false for Quick
+    bool isHeapSort; // Will contain true for Heap Sort and false for Quick Sort
     vector<song> recList; // Used only for quick sort to gather the data quick sort will be sorting
     vector<float> comparisons;
 
@@ -119,7 +119,6 @@ int main() {
                 }
             }
             if (songName == tokens[4]) {
-                cout << tokens[0] << endl;
                 srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]);
                 sourceGenre = tokens[20];
                 songFound = true;
@@ -144,10 +143,10 @@ int main() {
     cin >> playlistSize;
     if(option == "H" || option == "h"){
         cout << "Using Heap Sort...\n";
-        heapOrQuick = true;
+        isHeapSort = true;
     }else{
         cout << "Using Quick Sort...\n";
-        heapOrQuick = false;
+        isHeapSort = false;
     }
 
     unordered_set<string> foundSet;
@@ -173,7 +172,7 @@ int main() {
         string line;
         getline(file, line); // to ignore the first line with the column titles
         int numSongs = 0;
-        while (numSongs < 997) {
+        while (numSongs < 1000) {
             getline(file, line);
             stringstream ss(line);
 
@@ -206,7 +205,7 @@ int main() {
             if (aGenre == tokens[20]) {
                 numSongs++;
                 // check if H or Q
-                if(heapOrQuick){
+                if(isHeapSort){
                     // heapify -> heap sort
                 }else{
                     // Making a new song and adding it to the playlist
@@ -220,7 +219,7 @@ int main() {
         file.close();
     }
 
-    if(heapOrQuick){
+    if(isHeapSort){
         //print heap sort stuff
         // Make sure to use playlistSize
     }else{
