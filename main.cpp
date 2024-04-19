@@ -230,7 +230,8 @@ int main() {
 
         // print
         for(int i = 0; i < playlistSize; i++){
-            cout << counter << ".\nSong Name: " << recList[i].getTrackName() << "\nArtist: " << recList[i].getArtists() << "\nAlbum: " << recList[i].getAlbum() << "\nGenre: " << recList[i].getGenre() << "\n";
+            cout << counter << ".------------------------------------------------------------------------------------\n"
+                               "\t~Song Name: " << recList[i].getTrackName() << "\n\t~Artist: " << recList[i].getArtists() << "\n\t~Album: " << recList[i].getAlbum() << "\n\t~Genre: " << recList[i].getGenre() << "\n";
             counter++;
         }
     }
