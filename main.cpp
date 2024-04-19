@@ -210,8 +210,8 @@ int main() {
                     // heapify -> heap sort
                 }else{
                     // Making a new song and adding it to the playlist
-                    // recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]));
-                    // comparisons.push_back(abs(recList[recList.size()-1].gerneralGet(attribute)));
+                    recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]));
+                    //comparisons.push_back(abs(srcSong.gerneralGet(attribute) - recList[recList.size()-1].gerneralGet(attribute)));
                 }
                 // add to vector if quicksort
                 // do what is necessary to apply whichever sort was asked for
@@ -220,23 +220,20 @@ int main() {
         file.close();
     }
 
-    // call quicksort
+    if(heapOrQuick){
+        //print heap sort stuff
+        // Make sure to use playlistSize
+    }else{
+        int counter = 1; // used for UI element
+        // call quicksort
+        quickSort(recList, 0, recList.size()-1, attribute);
 
-    // Testing quickSort...
-    vector<int> nums{43, 5, 12, 34, 53, 87, 10, 11, 9, 8};
-    int n = nums.size();
-
-    cout << "Original array: ";
-    for (int i = 0; i < n; i++)
-        cout << nums[i] << " ";
-    cout << endl;
-
-    quickSort(nums, 0, n - 1);
-
-    cout << "Sorted array: ";
-    for (int i = 0; i < n; i++)
-        cout << nums[i] << " ";
-    cout << endl;
+        // print
+        for(int i = 0; i < playlistSize; i++){
+            cout << counter << ".\nSong Name: " << recList[i].getTrackName() << "\nArtist: " << recList[i].getArtists() << "\nAlbum: " << recList[i].getAlbum() << "\nGenre: " << recList[i].getGenre() << "\n";
+            counter++;
+        }
+    }
 
     return 0;
 }

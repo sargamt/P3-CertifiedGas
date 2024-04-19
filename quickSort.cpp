@@ -1,14 +1,16 @@
 #include <vector>
 
+#include "Song.h"
+
 using namespace std;
 
-inline int partition(vector<int>& arr, int low, int high){
-    int pivot = arr[high]; // Chooses the last element of the given array as the pivot
+inline int partition(vector<song>& arr, int low, int high, int attribute){
+    int pivot = arr[high].gerneralGet(attribute); // Chooses the last element of the given array as the pivot
     int small = low - 1; // Index of the smaller element beginning before the array to ensure the first element is smaller than the pivot
 
     for(int i = low; i < high; i++){
         // If the current input is smaller than or equal to the pivot the index of where the pivot will go increases and the element being checked is placed into the left side of where the pivot will go
-        if(arr[i] <= pivot){
+        if(arr[i].gerneralGet(attribute) <= pivot){
             small++;
             swap(arr[small], arr[i]);
         }
@@ -17,13 +19,13 @@ inline int partition(vector<int>& arr, int low, int high){
     return small + 1;
 }
 
-inline void quickSort(vector<int>& arr, int low, int high){
+inline void quickSort(vector<song>& arr, int low, int high, int attribute){
     if(low < high){
         // Finds the partition index
-        int splitIndex = partition(arr, low,high);
+        int splitIndex = partition(arr, low, high, attribute);
 
         // Recursively calls quick sort to then sort both sides of the partition
-        quickSort(arr, low, splitIndex-1);
-        quickSort(arr, splitIndex + 1, high);
+        quickSort(arr, low, splitIndex-1, attribute);
+        quickSort(arr, splitIndex + 1, high, attribute);
     }
 }
