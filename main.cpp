@@ -172,7 +172,7 @@ int main() {
         string line;
         getline(file, line); // to ignore the first line with the column titles
         int numSongs = 0;
-        while (numSongs < 1000) {
+        while (numSongs < 999) {
             getline(file, line);
             stringstream ss(line);
 
