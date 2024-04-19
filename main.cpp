@@ -5,6 +5,7 @@
 #include <unordered_set>
 
 #include "quickSort.cpp"
+#include "Song.h"
 
 using namespace std;
 
@@ -65,6 +66,8 @@ int main() {
     int attribute; // Holds the comparison attribute
     bool songFound = false; // exits loop when the song is found
 
+    song srcSong;
+
     // Taking user input
     cout << "Please enter a song name\n-";
     getline(cin, songName);
@@ -114,6 +117,7 @@ int main() {
             }
             if (songName == tokens[4]) {
                 cout << tokens[0] << endl;
+                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]);
                 sourceGenre = tokens[20];
                 songFound = true;
             }

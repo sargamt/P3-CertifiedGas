@@ -26,6 +26,8 @@ class song{
              album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
              loudness(loud), genre(gen) {}
 
+        song() {}
+
         // Getters
         string getID() const { return id; }
         string getTrackId() const { return track_id; }
