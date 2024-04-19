@@ -18,13 +18,21 @@ class song{
     float energy;
     float loudness;
     string genre;
+    float comparison;
 
     public:
         // Constructor
         song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
+             float engy, float loud, string gen, float comp): id(ID), track_id(trackID), artists(artistNames),
+             album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
+             loudness(loud), genre(gen), comparison(comp) {};
+
+        song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
              float engy, float loud, string gen): id(ID), track_id(trackID), artists(artistNames),
              album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
-             loudness(loud), genre(gen) {}
+             loudness(loud), genre(gen) { comparison = 0.0; };
+
+        song() {};
 
         // Getters
         string getID() const { return id; }
@@ -37,31 +45,17 @@ class song{
         float getEnergy() const { return energy; }
         float getLoudness() const { return loudness; }
         string getGenre() const { return genre; }
-        template<typename T>
-        T select_attribute(int i){
-            switch(i){
-                case 1:
-                    return getID();
-                case 2:
-                    return getTrackId();
-                case 3:
-                    return getArtists();
-                case 4:
-                    return getAlbum();
-                case 5:
-                    return getTrackName();
-                case 6:
-                    return getPopularity();
-                case 7:
-                    return getDanceability();
-                case 8:
-                    return getEnergy();
-                case 9:
-                    return getLoudness();
-                case 10:
-                    return getGenre();
+        float getComparison() const { return comparison; }
+        float generalGet(int attribute){
+            if(attribute == 1){
+                return float(getPopularity());
+            }else if(attribute == 2){
+                return getDanceability();
+            }else if(attribute == 3){
+                return getEnergy();
+            }else if(attribute == 4){
+                return getLoudness();
             }
         }
-
     };
 #endif //DSAFINALPROJECT_SONG_H

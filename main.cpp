@@ -3,12 +3,16 @@
 #include <sstream>
 #include <fstream>
 #include <unordered_set>
+#include <chrono>
 
 #include "quickSort.cpp"
+#include "Song.h"
 
 using namespace std;
 
 int main() {
+
+    string sourceGenre;
 
     unordered_set<string> set1{"acoustic", "guitar", "piano"};
     unordered_set<string> set2{"afrobeat", "reggae", "ska", "dub"};
@@ -62,6 +66,10 @@ int main() {
     int playlistSize;
     int attribute; // Holds the comparison attribute
     bool songFound = false; // exits loop when the song is found
+    bool isHeapSort; // Will contain true for Heap Sort and false for Quick Sort
+    vector<song> recList; // Used only for quick sort to gather the data quick sort will be sorting
+
+    song srcSong;
 
     // Taking user input
     cout << "Please enter a song name\n-";
@@ -111,7 +119,8 @@ int main() {
                 }
             }
             if (songName == tokens[4]) {
-                cout << tokens[0] << endl;
+                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]); // comparison = 0 because it is being compared to itself
+                sourceGenre = tokens[20];
                 songFound = true;
             }
         }
@@ -122,7 +131,7 @@ int main() {
         }
     }
 
-    cout << "Please choose the attribute for comparison\n"
+    cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
             "   1. Popularity\n"
             "   2. Danceability\n"
             "   3. Energy\n"
@@ -134,25 +143,115 @@ int main() {
     cin >> playlistSize;
     if(option == "H" || option == "h"){
         cout << "Using Heap Sort...\n";
+        isHeapSort = true;
     }else{
         cout << "Using Quick Sort...\n";
+        isHeapSort = false;
     }
 
-    // Testing quickSort...
-    vector<int> nums{43, 5, 12, 34, 53, 87, 10, 11, 9, 8};
-    int n = nums.size();
+    unordered_set<string> foundSet;
 
-    cout << "Original array: ";
-    for (int i = 0; i < n; i++)
-        cout << nums[i] << " ";
-    cout << endl;
+    for (unordered_set<string> eachSet : sets) {
+        for (string genreFromSet : eachSet) {
+            if (genreFromSet == sourceGenre) {
+                foundSet = eachSet;
+            }
+        }
+    }
 
-    quickSort(nums, 0, n - 1);
+    auto start = chrono::high_resolution_clock::now();
 
-    cout << "Sorted array: ";
-    for (int i = 0; i < n; i++)
-        cout << nums[i] << " ";
-    cout << endl;
+    for (string aGenre: foundSet) {
+        //parsing data
+        string filename = "../dataset.csv";
+        ifstream file(filename);
+
+        if (!file.is_open()) {
+            cerr << "Error opening file: " << filename << endl;
+        }
+
+        string space;
+
+        string line;
+        getline(file, line); // to ignore the first line with the column titles
+        int numSongs = 0;
+        while (numSongs < 999) {
+            getline(file, line);
+            stringstream ss(line);
+
+            vector<string> tokens;
+            string token;
+            bool inQuotes = false;
+            string field;
+
+            while (getline(ss, token, ',')) {
+                if (inQuotes == false) {
+                    if (token.front() == '"' && token.back() != '"') {
+                        inQuotes = true;
+                        field = token + ",";
+                    }
+                    else {
+                        tokens.push_back(token);
+                    }
+                }
+                else {
+                    field += token;
+                    if (token.back() == '"') {
+                        inQuotes = false;
+                        tokens.push_back(field);
+                    }
+                    else {
+                        field += ",";
+                    }
+                }
+            }
+            if (aGenre == tokens[20]) {
+                numSongs++;
+                // check if H or Q
+                if(isHeapSort){
+                    // heapify -> heap sort
+                }else{
+                    int att = -1;
+                    if(attribute == 1){
+                        att = 5;
+                    }else if(attribute == 2){
+                        att = 8;
+                    }else if(attribute == 3){
+                        att = 9;
+                    }else if(attribute == 4){
+                        att = 11;
+                    }
+                    // Making a new song and adding it to the playlist
+                    recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
+                }
+                // do what is necessary to apply whichever sort was asked for
+            }
+        }
+        file.close();
+    }
+
+    if(isHeapSort){
+        //Do anything else you need for heap sort
+        auto stopHeap = chrono::high_resolution_clock::now();
+        auto heapDuration = chrono::duration_cast<chrono::microseconds>(stopHeap - start); // Time Heap Sort took
+        //print heap sort stuff
+        // Make sure to use playlistSize
+
+        cout << "\nTotal time for Heap Sort = " << heapDuration.count() << " microseconds.";
+    }else{
+        int counter = 1; // used for UI element
+        // call quicksort
+        quickSort(recList, 0, recList.size()-1);
+        auto stopQuick = chrono::high_resolution_clock::now();
+        auto quickDuration = chrono::duration_cast<chrono::microseconds>(stopQuick - start); // Time Heap Sort took
+        // print
+        for(int i = 0; i < playlistSize; i++){
+            cout << counter << ".------------------------------------------------------------------------------------\n"
+                               "\t~Song Name: " << recList[i].getTrackName() << "\n\t~Artist: " << recList[i].getArtists() << "\n\t~Album: " << recList[i].getAlbum() << "\n\t~Genre: " << recList[i].getGenre() << "\n\t~Comparison Value: " << recList[i].getComparison() << "\n";
+            counter++;
+        }
+        cout << "\nTotal time for Quick Sort = " << quickDuration.count() << " microseconds.";
+    }
 
     return 0;
 }
