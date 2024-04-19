@@ -5,6 +5,7 @@
 #include <unordered_set>
 
 #include "quickSort.cpp"
+#include "Song.h"
 
 using namespace std;
 
@@ -64,6 +65,9 @@ int main() {
     int playlistSize;
     int attribute; // Holds the comparison attribute
     bool songFound = false; // exits loop when the song is found
+    bool heapOrQuick; // Will contain true for Heap and false for Quick
+    vector<song> recList; // Used only for quick sort to gather the data quick sort will be sorting
+    vector<float> comparisons;
 
     // Taking user input
     cout << "Please enter a song name\n-";
@@ -125,6 +129,23 @@ int main() {
         }
     }
 
+    cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
+            "   1. Popularity\n"
+            "   2. Danceability\n"
+            "   3. Energy\n"
+            "   4. Loudness\n-";
+    cin >> attribute;
+    cout << "Would you like to use Heap sort or Quick sort (\"H\" for Heap/anything else for Quick)\n-";
+    cin >> option;
+    cout << "Please enter the number of songs you would like in your playlist\n-";
+    cin >> playlistSize;
+    if(option == "H" || option == "h"){
+        cout << "Using Heap Sort...\n";
+        heapOrQuick = true;
+    }else{
+        cout << "Using Quick Sort...\n";
+        heapOrQuick = false;
+    }
 
     unordered_set<string> foundSet;
 
@@ -182,7 +203,13 @@ int main() {
             if (aGenre == tokens[20]) {
                 numSongs++;
                 // check if H or Q
-                // heapify if heap sort
+                if(heapOrQuick){
+                    // heapify -> heap sort
+                }else{
+                    // Making a new song and adding it to the playlist
+                    // recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]));
+                    // comparisons.push_back(abs(recList[recList.size()-1].gerneralGet(attribute)));
+                }
                 // add to vector if quicksort
                 // do what is necessary to apply whichever sort was asked for
             }
@@ -191,22 +218,6 @@ int main() {
     }
 
     // call quicksort
-
-    cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
-            "   1. Popularity\n"
-            "   2. Danceability\n"
-            "   3. Energy\n"
-            "   4. Loudness\n-";
-    cin >> attribute;
-    cout << "Would you like to use Heap sort or Quick sort (\"H\" for Heap/anything else for Quick)\n-";
-    cin >> option;
-    cout << "Please enter the number of songs you would like in your playlist\n-";
-    cin >> playlistSize;
-    if(option == "H" || option == "h"){
-        cout << "Using Heap Sort...\n";
-    }else{
-        cout << "Using Quick Sort...\n";
-    }
 
     // Testing quickSort...
     vector<int> nums{43, 5, 12, 34, 53, 87, 10, 11, 9, 8};
