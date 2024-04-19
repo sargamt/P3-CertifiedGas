@@ -10,8 +10,6 @@ using namespace std;
 
 int main() {
 
-
-
     string sourceGenre;
 
     unordered_set<string> set1{"acoustic", "guitar", "piano"};
@@ -183,12 +181,16 @@ int main() {
             }
             if (aGenre == tokens[20]) {
                 numSongs++;
+                // check if H or Q
+                // heapify if heap sort
+                // add to vector if quicksort
                 // do what is necessary to apply whichever sort was asked for
             }
         }
         file.close();
     }
 
+    // call quicksort
 
     cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
             "   1. Popularity\n"
