@@ -18,15 +18,21 @@ class song{
     float energy;
     float loudness;
     string genre;
+    float comparison;
 
     public:
         // Constructor
         song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
+             float engy, float loud, string gen, float comp): id(ID), track_id(trackID), artists(artistNames),
+             album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
+             loudness(loud), genre(gen), comparison(comp) {};
+
+        song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
              float engy, float loud, string gen): id(ID), track_id(trackID), artists(artistNames),
              album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
-             loudness(loud), genre(gen) {}
+             loudness(loud), genre(gen) { comparison = 0.0; };
 
-        song() {}
+        song() {};
 
         // Getters
         string getID() const { return id; }
@@ -39,7 +45,8 @@ class song{
         float getEnergy() const { return energy; }
         float getLoudness() const { return loudness; }
         string getGenre() const { return genre; }
-        float gerneralGet(int attribute){
+        float getComparison() const { return comparison; }
+        float generalGet(int attribute){
             if(attribute == 1){
                 return float(getPopularity());
             }else if(attribute == 2){

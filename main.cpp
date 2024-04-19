@@ -67,7 +67,6 @@ int main() {
     bool songFound = false; // exits loop when the song is found
     bool isHeapSort; // Will contain true for Heap Sort and false for Quick Sort
     vector<song> recList; // Used only for quick sort to gather the data quick sort will be sorting
-    vector<float> comparisons;
 
     song srcSong;
 
@@ -119,7 +118,7 @@ int main() {
                 }
             }
             if (songName == tokens[4]) {
-                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]);
+                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]); // comparison = 0 because it is being compared to itself
                 sourceGenre = tokens[20];
                 songFound = true;
             }
@@ -208,11 +207,19 @@ int main() {
                 if(isHeapSort){
                     // heapify -> heap sort
                 }else{
+                    int att = -1;
+                    if(attribute == 1){
+                        att = 5;
+                    }else if(attribute == 2){
+                        att = 8;
+                    }else if(attribute == 3){
+                        att = 9;
+                    }else if(attribute == 4){
+                        att = 11;
+                    }
                     // Making a new song and adding it to the playlist
-                    recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]));
-                    //comparisons.push_back(abs(srcSong.gerneralGet(attribute) - recList[recList.size()-1].gerneralGet(attribute)));
+                    recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
                 }
-                // add to vector if quicksort
                 // do what is necessary to apply whichever sort was asked for
             }
         }
@@ -225,7 +232,7 @@ int main() {
     }else{
         int counter = 1; // used for UI element
         // call quicksort
-        quickSort(recList, 0, recList.size()-1, attribute);
+        quickSort(recList, 0, recList.size()-1);
 
         // print
         for(int i = 0; i < playlistSize; i++){
