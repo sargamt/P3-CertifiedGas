@@ -89,7 +89,7 @@ int main() {
 
         string line;
         getline(file, line); // to ignore the first line with the column titles
-        for (int i = 0; i < 131; i++) {
+        for (int i = 0; i < 114000; i++) {
             getline(file, line);
             stringstream ss(line);
 
