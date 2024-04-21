@@ -222,6 +222,13 @@ int main() {
                 }else if(attribute == 4){
                     att = 11;
                 }
+                else if(attribute == 5){
+                    att = 17;
+                }
+                else if(attribute == 6){
+                    att = 18;
+                }
+
                 // Making a new song and adding it to the playlist
                 recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]),stof(tokens[17]),stof(tokens[18]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
                 // do what is necessary to apply whichever sort was asked for
@@ -232,11 +239,17 @@ int main() {
 
     if(isHeapSort){
         //Do anything else you need for heap sort
+        int counter = 1; // used for UI element
         heap_sort(recList);
         auto stopHeap = chrono::high_resolution_clock::now();
         auto heapDuration = chrono::duration_cast<chrono::microseconds>(stopHeap - start); // Time Heap Sort took
         //print heap sort stuff
         // Make sure to use playlistSize
+        for(int i = 0; i < playlistSize; i++){
+            cout << counter << ".------------------------------------------------------------------------------------\n"
+                               "\t~Song Name: " << recList[i].getTrackName() << "\n\t~Artist: " << recList[i].getArtists() << "\n\t~Album: " << recList[i].getAlbum() << "\n\t~Genre: " << recList[i].getGenre() << "\n\t~Comparison Value: " << recList[i].getComparison() << "\n";
+            counter++;
+        }
 
         cout << "\nTotal time for Heap Sort = " << heapDuration.count() << " microseconds.";
     }else{
