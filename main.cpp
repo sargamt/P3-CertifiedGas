@@ -6,6 +6,7 @@
 #include <chrono>
 
 #include "quickSort.cpp"
+#include "Heap_structure.cpp"
 #include "Song.h"
 
 using namespace std;
@@ -209,22 +210,18 @@ int main() {
             if (aGenre == tokens[20]) {
                 numSongs++;
                 // check if H or Q
-                if(isHeapSort){
-                    // heapify -> heap sort
-                }else{
-                    int att = -1;
-                    if(attribute == 1){
-                        att = 5;
-                    }else if(attribute == 2){
-                        att = 8;
-                    }else if(attribute == 3){
-                        att = 9;
-                    }else if(attribute == 4){
-                        att = 11;
-                    }
-                    // Making a new song and adding it to the playlist
-                    recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
+                int att = -1;
+                if(attribute == 1){
+                    att = 5;
+                }else if(attribute == 2){
+                    att = 8;
+                }else if(attribute == 3){
+                    att = 9;
+                }else if(attribute == 4){
+                    att = 11;
                 }
+                // Making a new song and adding it to the playlist
+                recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
                 // do what is necessary to apply whichever sort was asked for
             }
         }
@@ -233,6 +230,7 @@ int main() {
 
     if(isHeapSort){
         //Do anything else you need for heap sort
+        heap_sort(recList);
         auto stopHeap = chrono::high_resolution_clock::now();
         auto heapDuration = chrono::duration_cast<chrono::microseconds>(stopHeap - start); // Time Heap Sort took
         //print heap sort stuff
