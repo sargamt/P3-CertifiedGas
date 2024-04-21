@@ -136,7 +136,7 @@ int main() {
             "   1. Popularity\n"
             "   2. Danceability\n"
             "   3. Energy\n"
-            "   4. Loudness\n-"
+            "   4. Loudness\n"
             "   5. Valence\n"
             "   6. Tempo\n-";;
     cin >> attribute;
