@@ -63,7 +63,7 @@ class song{
             else if(attribute == 5){
                 return getValence();
             }
-            else if(attribute == 6){
+            else { // if attribute == 6
                 return getTempo();
             }
         }
