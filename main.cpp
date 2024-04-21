@@ -140,6 +140,7 @@ int main() {
     cout << "Would you like to use Heap sort or Quick sort (\"H\" for Heap/anything else for Quick)\n-";
     cin >> option;
     cout << "Please enter the number of songs you would like in your playlist\n-";
+    cout << "(Limit is 1000)\n-";
     cin >> playlistSize;
     if(option == "H" || option == "h"){
         cout << "Using Heap Sort...\n";
