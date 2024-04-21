@@ -7,7 +7,7 @@
 #include "song.h"
 
 using namespace std;
-void heapify_up(vector<song>& vec, int heap_s){
+inline void heapify_up(vector<song>& vec, int heap_s){
     int index = heap_s;
     while((vec[index].getComparison() > vec[(index - 1)/2].getComparison())&& index != 0){
         song temp = vec[index];
