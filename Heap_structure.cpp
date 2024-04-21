@@ -8,8 +8,8 @@
 
 using namespace std;
 void heapify_up(vector<song>& vec, int heap_s){
-int index = heap_s;
-        while((vec[index].getComparison() > vec[(index - 1)/2].getComparison())&& index != 0){
+    int index = heap_s;
+    while((vec[index].getComparison() > vec[(index - 1)/2].getComparison())&& index != 0){
         song temp = vec[index];
         vec[index] = vec[(index - 1)/2];
         vec[(index - 1)/2] = temp;
@@ -45,7 +45,6 @@ inline void heapify_down(vector<song>& vec, int heap_s){
                 i = (2*i)+2;
             }
         }
-
     }
 }
 
@@ -62,3 +61,4 @@ inline void heap_sort(vector<song>& vec ){
         heap_end--;
     }
 }
+
