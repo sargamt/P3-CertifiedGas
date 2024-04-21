@@ -25,25 +25,47 @@ inline void heapify_down(vector<song>& vec, int heap_s){
     while((2*i)+1 < j){
         if((2*i)+2 == j){
             if (vec[i].getComparison() < vec[(2*i)+1].getComparison()){
-                song temp = vec[i];
+                temp = vec[i];
                 vec[i] = vec[(2*i)+1];
                 vec[(2*i)+1] = temp;
+                i = (2*i)+1;
+            }
+            else{
                 i = (2*i)+1;
             }
         }
-        else if(vec[i].getComparison() < vec[(2*i)+1].getComparison() || vec[i].getComparison() < vec[(2*i)+2].getComparison()){
-            if(vec[(2*i)+1].getComparison() > vec[(2*i)+2].getComparison()){
-                song temp = vec[i];
+        else if(vec[i].getComparison() < vec[(2*i)+1].getComparison()){
+            if(vec[i].getComparison() < vec[(2*i)+2].getComparison()){
+                if(vec[(2*i)+1].getComparison() > vec[(2*i)+2].getComparison()){
+                    temp = vec[i];
+                    vec[i] = vec[(2*i)+1];
+                    vec[(2*i)+1] = temp;
+                    i = (2*i)+1;
+                }
+                else if(vec[(2*i)+2].getComparison() >= vec[(2*i)+1].getComparison()){
+                    temp = vec[i];
+                    vec[i] = vec[(2*i)+2];
+                    vec[(2*i)+2] = temp;
+                    i = (2*i)+2;
+                }
+            }
+            else{
+                temp = vec[i];
                 vec[i] = vec[(2*i)+1];
                 vec[(2*i)+1] = temp;
                 i = (2*i)+1;
             }
-            else if(vec[(2*i)+2].getComparison() >= vec[(2*i)+1].getComparison()){
-                song temp = vec[i];
+
+        }
+        else if(vec[i].getComparison() < vec[(2*i)+2].getComparison()){
+                temp = vec[i];
                 vec[i] = vec[(2*i)+2];
                 vec[(2*i)+2] = temp;
                 i = (2*i)+2;
-            }
+
+        }
+        else{
+            i = j;
         }
     }
 }
