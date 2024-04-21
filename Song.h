@@ -17,20 +17,22 @@ class song{
     float danceability;
     float energy;
     float loudness;
+    float valence;
+    float tempo;
     string genre;
     float comparison;
 
     public:
         // Constructor
         song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
-             float engy, float loud, string gen, float comp): id(ID), track_id(trackID), artists(artistNames),
+             float engy, float loud, float val, float temp, string gen, float comp): id(ID), track_id(trackID), artists(artistNames),
              album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
-             loudness(loud), genre(gen), comparison(comp) {};
+             loudness(loud), valence(val), tempo(temp), genre(gen), comparison(comp) {};
 
         song(string ID, string trackID, string artistNames, string albumName, string trackName, int pop, float dance,
-             float engy, float loud, string gen): id(ID), track_id(trackID), artists(artistNames),
+             float engy, float loud, float val, float temp, string gen): id(ID), track_id(trackID), artists(artistNames),
              album_name(albumName), track_name(trackName), popularity(pop), danceability(dance), energy(engy),
-             loudness(loud), genre(gen) { comparison = 0.0; };
+             loudness(loud), valence(val), tempo(temp), genre(gen) { comparison = 0.0; };
 
         song() {};
 
@@ -44,6 +46,8 @@ class song{
         float getDanceability() const { return danceability; }
         float getEnergy() const { return energy; }
         float getLoudness() const { return loudness; }
+        float getValence() const { return valence; }
+        float getTempo() const { return tempo; }
         string getGenre() const { return genre; }
         float getComparison() const { return comparison; }
         float generalGet(int attribute){
@@ -55,6 +59,12 @@ class song{
                 return getEnergy();
             }else if(attribute == 4){
                 return getLoudness();
+            }
+            else if(attribute == 5){
+                return getValence();
+            }
+            else if(attribute == 6){
+                return getTempo();
             }
         }
     };

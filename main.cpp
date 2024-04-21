@@ -120,7 +120,7 @@ int main() {
                 }
             }
             if (songName == tokens[4]) {
-                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20]); // comparison = 0 because it is being compared to itself
+                srcSong = song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]),stof(tokens[17]),stof(tokens[18]), tokens[20]); // comparison = 0 because it is being compared to itself
                 sourceGenre = tokens[20];
                 songFound = true;
             }
@@ -136,7 +136,9 @@ int main() {
             "   1. Popularity\n"
             "   2. Danceability\n"
             "   3. Energy\n"
-            "   4. Loudness\n-";
+            "   4. Loudness\n-"
+            "   5. Valence\n"
+            "   6. Tempo\n-";;
     cin >> attribute;
     cout << "Would you like to use Heap sort or Quick sort (\"H\" for Heap/anything else for Quick)\n-";
     cin >> option;
@@ -221,7 +223,7 @@ int main() {
                     att = 11;
                 }
                 // Making a new song and adding it to the playlist
-                recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
+                recList.push_back(song(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stoi(tokens[5]), stof(tokens[8]), stof(tokens[9]), stof(tokens[11]),stof(tokens[17]),stof(tokens[18]), tokens[20], abs(srcSong.generalGet(attribute) - stof(tokens[att]))));
                 // do what is necessary to apply whichever sort was asked for
             }
         }
