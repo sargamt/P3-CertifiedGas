@@ -1,5 +1,5 @@
 Instructions for running Project 3: Certified Gas
-We recommend running out project in the CLion run tool window. Additionally you may run it on a terminal
+We recommend running our project in the CLion run tool window. Additionally you may run it on a terminal
 
 1) First choose a song from the data set, the CSV file is included in the repo but it may also be accessed by using the link https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset
 
