@@ -11,4 +11,4 @@ We recommend running our project in the CLion run tool window. Additionally you 
 4) Choose your algorithm for comparison. We have programmed the sorting of the data set using two algorithms heap sort and quick sort
    Enter H or h for Heap sort and any other value for quick sort.
 
-5) Choose how many songs you would like to include in your new playlist, we recommend keeping this number under 1000 as that is the minimum number of songs in a data set. 
+5) Choose how many songs you would like to include in your new playlist. The limit is 999 songs.
