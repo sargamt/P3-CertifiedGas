@@ -132,7 +132,7 @@ int main() {
         }
     }
 
-    cout << "Please choose the attribute for comparison\n" // enter 1, 2, 3, or 4
+    cout << "Please choose the attribute for comparison (Enter 1, 2, 3, 4, 5, or 6) \n" // enter 1, 2, 3, 4, 5, or 6
             "   1. Popularity\n"
             "   2. Danceability\n"
             "   3. Energy\n"
